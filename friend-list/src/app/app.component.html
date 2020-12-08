@@ -1,0 +1,11 @@
+{{ FriendModel | json }}
+
+<form action="" #formName="ngForm">
+  <input type="text" name="first_name"  [(ngModel)]="FriendModel.first_name">
+  <input type="text" name="last_name"  [(ngModel)]="FriendModel.last_name">
+  <select name="language" id="language"  [(ngModel)]="FriendModel.language">
+    <option *ngFor="let language of languages" value="{{language.name}}">{{language.name}}</option>
+  </select>
+  <button>Save</button>
+</form>
+<router-outlet></router-outlet>
