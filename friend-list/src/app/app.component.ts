@@ -9,5 +9,7 @@ import { Friend } from "./friend";
 export class AppComponent {
   languages = [{name: 'HTML'}, {name: 'CSS'}, {name: 'JS'}, {name: 'PHP'}]
   // @ts-ignore
-  FriendModel = new Friend(null, null, null)
+  friendModel = new Friend(null, null, null)
+
+
 }

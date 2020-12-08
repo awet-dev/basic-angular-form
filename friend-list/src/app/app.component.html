@@ -1,11 +1,13 @@
-{{ FriendModel | json }}
+{{ friendModel | json }}
 
-<form action="" #formName="ngForm">
-  <input type="text" name="first_name"  [(ngModel)]="FriendModel.first_name">
-  <input type="text" name="last_name"  [(ngModel)]="FriendModel.last_name">
-  <select name="language" id="language"  [(ngModel)]="FriendModel.language">
+<form action="" #formName="ngForm" novalidate>
+  <input pattern="[a-zA-Z ]*" type="text" name="first_name" #first_name="ngModel" [(ngModel)]="friendModel.first_name" [class.error]="first_name.invalid && first_name.touched" required="required" >
+  <span [ngClass]="first_name.invalid && first_name.touched ? 'show' : 'hide'">Enter only letters</span>
+  <input pattern="[a-zA-Z ]*" type="text" name="last_name"  #last_name="ngModel" [(ngModel)]="friendModel.last_name" [class.error]="last_name.invalid && last_name.touched" required="required">
+  <span [ngClass]="last_name.invalid && last_name.touched ? 'show' : 'hide'">Enter only letters</span>
+  <select name="language" id="language" #language="ngModel" [(ngModel)]="friendModel.language" [class.error]="language.invalid && language.touched" required="required">
     <option *ngFor="let language of languages" value="{{language.name}}">{{language.name}}</option>
   </select>
-  <button>Save</button>
+  <button [disabled]="formName.invalid">Save</button>
 </form>
 <router-outlet></router-outlet>
