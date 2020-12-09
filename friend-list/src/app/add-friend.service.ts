@@ -7,14 +7,16 @@ import { Friend} from "./friend";
 })
 export class AddFriendService {
   private http: HttpClient;
-  private url:string = ""
+  private url: string = 'http://localhost:9000/'
 
   constructor(http: HttpClient) {
     this.http = http;
   }
 
-  public addFriend(friend: Friend): Observable<Object> {
-    return this.http.post(this.url, friend)
+
+  public addFriend(data: Friend):any {
+    this.url = 'http://localhost:9000/addFriend';
+    this.http.post(this.url, data)
   }
 
 }

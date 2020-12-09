@@ -1,10 +1,21 @@
 {{ friendModel | json }}
 
 <form action="" method="post" #formName="ngForm" novalidate (ngSubmit)="Submit()">
-  <input pattern="[a-zA-Z ]*" type="text" name="first_name" #first_name="ngModel" [(ngModel)]="friendModel.first_name" [class.error]="first_name.invalid && first_name.touched" required="required" >
-  <span [ngClass]="first_name.invalid && first_name.touched ? 'show' : 'hide'">Enter only letters</span>
-  <input pattern="[a-zA-Z ]*" type="text" name="last_name"  #last_name="ngModel" [(ngModel)]="friendModel.last_name" [class.error]="last_name.invalid && last_name.touched" required="required">
-  <span [ngClass]="last_name.invalid && last_name.touched ? 'show' : 'hide'">Enter only letters</span>
+  <input pattern="[a-zA-Z ]*" type="text" name="fName" #fName="ngModel" [(ngModel)]="friendModel.fName" [class.error]="fName.invalid && fName.touched" required="required" >
+  <span [ngClass]="fName.invalid && fName.touched ? 'show' : 'hide'">Enter only letters</span>
+
+  <input pattern="[a-zA-Z ]*" type="text" name="lName"  #lName="ngModel" [(ngModel)]="friendModel.lName" [class.error]="lName.invalid && lName.touched" required="required">
+  <span [ngClass]="lName.invalid && lName.touched ? 'show' : 'hide'">Enter only letters</span>
+
+  <input pattern="[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,4}" type="email" name="email"  #email="ngModel" [(ngModel)]="friendModel.email" [class.error]="email.invalid && email.touched" required="required">
+  <span [ngClass]="email.invalid && email.touched ? 'show' : 'hide'">Enter only letters</span>
+
+  <input pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" type="tel" name="phone"  #phone="ngModel" [(ngModel)]="friendModel.phone" [class.error]="phone.invalid && phone.touched" required="required">
+  <span [ngClass]="phone.invalid && phone.touched ? 'show' : 'hide'">Enter only letters</span>
+
+  <input pattern="[a-zA-Z ]*" type="text" name="signatureMove"  #signatureMove="ngModel" [(ngModel)]="friendModel.signatureMove" [class.error]="signatureMove.invalid && signatureMove.touched" required="required">
+  <span [ngClass]="signatureMove.invalid && signatureMove.touched ? 'show' : 'hide'">Enter only letters</span>
+
   <select name="language" id="language" #language="ngModel" [(ngModel)]="friendModel.language" [class.error]="language.invalid && language.touched" required="required">
     <option *ngFor="let language of languages" value="{{language.name}}">{{language.name}}</option>
   </select>
