@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Friend } from "./friend";
 import { AddFriendService} from "./add-friend.service";
 import {OnInit} from '@angular/core';
-import {subscribeTo} from "rxjs/internal-compatibility";
 
 @Component({
   selector: 'app-root',
@@ -25,7 +24,7 @@ export class AppComponent implements OnInit{
   public Submit(): void {
     const observable = this.addFriendService.addFriend(this.friendModel);
     const myObservable = {
-      observable: (x: string) => console.log('Observer got a next value: ' + x),
+      next: (x: string) => console.log('Observer got a next value: ' + x),
       error: (err: string) => console.error('Observer got an error: ' + err),
       complete: () => this.display('http://localhost:9000/allFriends')
     }
@@ -34,19 +33,18 @@ export class AppComponent implements OnInit{
   }
 
   public async display(url: string): Promise<any> {
-
-    const response = await fetch(url, {
+    const response = await fetch(url,{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       }
-    });
-    const body = await response.json();
-    this.allFriends = body;
-    return body;
+    })
+
+    this.allFriends = await response.json();
+    return this.allFriends;
   }
 
   ngOnInit(): void {
-    this.display('http://localhost:9000/allFriends');
+    this.display('http://localhost:9000/allFriends').then(r => console.log(r));
   }
 }

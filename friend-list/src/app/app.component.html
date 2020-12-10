@@ -21,4 +21,16 @@
   </select>
   <button [disabled]="formName.invalid">Save</button>
 </form>
+
+<div id="container">
+  <div class="friend" *ngFor="let friend of allFriends">
+    First name: {{friend.fName}}<br>
+    Last name: {{friend.lName}}<br>
+    Email: {{friend.email}}<br>
+    Email: {{friend.signatureMove}}<br>
+    Phone number: {{friend.phone}}<br>
+    Favourite language: {{friend.language}}<br>
+  </div>
+</div>
+
 <router-outlet></router-outlet>
